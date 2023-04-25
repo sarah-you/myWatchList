@@ -1,0 +1,88 @@
+* {
+  font-family: montserrat, sans-serif;
+}
+
+.header {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+h1 {
+  font-family: Righteous, cursive;
+  color: #fb4d3d;
+}
+
+.main {
+  background-color: #f0f0f0;
+  padding-top: 1rem;
+}
+
+.logo {
+  margin-left: 10rem;
+}
+
+#my-list {
+  font-size: 1.5rem;
+  margin-left: 4rem;
+  padding-top: 0.5rem;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+p,
+a {
+  font-size: 1rem;
+}
+
+p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.list-wrap {
+  display: flex;
+  flex-direction: row;
+  height: 10rem;
+  background-color: white;
+  margin: 1.5rem;
+}
+
+li {
+  display: flex;
+}
+
+img {
+  height: 10rem;
+}
+
+.text-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+}
+
+.title {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
