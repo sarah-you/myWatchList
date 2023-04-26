@@ -61,29 +61,84 @@ function getAnimeData(name) {
       $duration.textContent = top25Data[i].duration;
       $textWrap.appendChild($duration);
 
-      const $hiddenWrap = document.createElement('div');
-      $hiddenWrap.setAttribute('class', 'hidden');
-      $top25List.appendChild($hiddenWrap);
+      const $hiddenModal = document.createElement('div');
+      $hiddenModal.setAttribute('class', 'hidden modal');
+      $top25List.appendChild($hiddenModal);
+
+      const $modalWrap = document.createElement('div');
+      $modalWrap.setAttribute('class', 'modal-wrap');
+      $hiddenModal.appendChild($modalWrap);
+
+      // hidden modal elements
+      const $modalImgWrap = document.createElement('div');
+      $modalImgWrap.setAttribute('class', 'img-wrap');
+      $modalWrap.appendChild($modalImgWrap);
+
+      const $modalImg = document.createElement('img');
+      const modalImgUrl = top25Data[i].images.jpg.image_url;
+      $modalImg.setAttribute('src', modalImgUrl);
+      $modalImgWrap.appendChild($modalImg);
+
+      const $modalTextWrap = document.createElement('div');
+      $modalTextWrap.setAttribute('class', 'modal-text-wrap');
+      $modalWrap.appendChild($modalTextWrap);
+
+      const $modalTitle = document.createElement('p');
+      $modalTitle.setAttribute('class', 'modal-title');
+      $modalTitle.textContent = top25Data[i].title;
+      $modalTextWrap.appendChild($modalTitle);
+
+      const $modalRating = document.createElement('p');
+      $modalRating.textContent = 'score: ' + top25Data[i].score;
+      $modalRating.setAttribute('class', 'modal-score');
+      $modalTextWrap.appendChild($modalRating);
+
+      const $modalScoreBy = document.createElement('p');
+      $modalScoreBy.textContent = top25Data[i].scored_by + ' viewers';
+      $modalScoreBy.setAttribute('class', 'modal-score-by');
+      $modalTextWrap.appendChild($modalScoreBy);
+
+      const $modalGenres = document.createElement('p');
+      $modalGenres.setAttribute('class', 'modal-genres');
+      const modalGenreTypes = top25Data[i].genres;
+      for (let i = 0; i < modalGenreTypes.length; i++) {
+        $modalGenres.textContent += modalGenreTypes[i].name + ' ';
+        $modalTextWrap.appendChild($modalGenres);
+      }
 
       const $synopsis = document.createElement('p');
+      $synopsis.setAttribute('class', 'synopsis');
       $synopsis.textContent = top25Data[i].synopsis;
-      $hiddenWrap.appendChild($synopsis);
+      $modalTextWrap.appendChild($synopsis);
 
       const $trailer = document.createElement('iframe');
+      $trailer.setAttribute('class', 'trailer');
       $trailer.setAttribute('src', top25Data[i].trailer.embed_url);
       $trailer.setAttribute('frameborder', '0');
       $trailer.setAttribute('allow', 'accelerometer, clipboard-write; encrypted-media; gyroscope; picture-in-picture'
       );
       $trailer.setAttribute('allowfullscreen', 'allowfullscreen');
-      $hiddenWrap.appendChild($trailer);
+      $modalWrap.appendChild($trailer);
 
       const $watchNow = document.createElement('a');
       $watchNow.textContent = 'Watch Now';
       const websiteLink = top25Data[i].url;
       $watchNow.setAttribute('href', websiteLink);
-      $hiddenWrap.appendChild($watchNow);
-
+      $watchNow.setAttribute('class', 'watch-now');
+      $modalWrap.appendChild($watchNow);
+      // end of modal elements
     }
+
+    const $defaultModal = document.querySelector('.main-container');
+    const $listClicked = document.querySelector('.list-wrap');
+    const $modal = document.querySelector('.hidden');
+
+    function openModal(event) {
+      $defaultModal.className = 'main-container modal-opened';
+      $modal.className = 'show modal';
+    }
+    $listClicked.addEventListener('click', openModal);
+
   });
   xhr.send();
 }

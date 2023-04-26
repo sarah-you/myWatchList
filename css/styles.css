@@ -14,7 +14,7 @@ h1 {
   color: #fb4d3d;
 }
 
-.main {
+.main-container {
   background-color: #f0f0f0;
   padding-top: 1rem;
 }
@@ -25,7 +25,7 @@ h1 {
 
 #my-list {
   font-size: 1.5rem;
-  margin-left: 4rem;
+  margin-left: 5rem;
   padding-top: 0.5rem;
 }
 
@@ -54,7 +54,7 @@ ol {
 .list-wrap {
   display: flex;
   flex-direction: row;
-  height: 10rem;
+  height: 12rem;
   background-color: white;
   margin: 1.5rem;
   width: 90%;
@@ -66,7 +66,7 @@ li {
 }
 
 img {
-  height: 10rem;
+  height: 12rem;
 }
 
 .text-wrap {
@@ -96,28 +96,47 @@ img {
   color: #fb4d3d;
 }
 
-.modal {
-  width: 100%;
-  height: 100%;
-  background-color: rgb(0 0 0/80%);
-  position: fixed;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-}
-
 .modal-wrap {
-  background-color: white;
-  width: 400px;
   border-radius: 5px;
   margin: 20% auto;
   text-align: center;
-  height: 200px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
 .hidden {
   display: none;
+}
+
+.show {
+  background-color: rgb(0 0 0/90%);
+  height: 100vh;
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  position: fixed;
+  right: 75%;
+  left: 8%;
+  top: 0;
+  bottom: 0;
+}
+
+.modal-title,
+.modal-score,
+.modal-score-by,
+.modal-genres,
+.synopsis,
+.watch-now {
+  color: white;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-family: Righteous, sans-serif;
 }
