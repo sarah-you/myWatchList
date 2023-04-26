@@ -149,22 +149,38 @@ function getAnimeData(name) {
       $watchNow.setAttribute('class', 'watch-now');
       $watchNowDiv.appendChild($watchNow);
 
+      const $modalBtnWrap = document.createElement('div');
+      $modalBtnWrap.setAttribute('class', 'modal-btn-wrap');
+      $modalContainer.appendChild($modalBtnWrap);
+
+      const $modalAddBtn = document.createElement('button');
+      $modalAddBtn.textContent = '+ Add';
+      $modalAddBtn.setAttribute('class', 'add modal-btn');
+      $modalBtnWrap.appendChild($modalAddBtn);
+
       const $modalCloseBtn = document.createElement('button');
-      $modalCloseBtn.setAttribute('class', 'modal-close-btn');
-      $modalContainer.appendChild($modalCloseBtn);
+      $modalCloseBtn.textContent = 'Close';
+      $modalCloseBtn.setAttribute('class', 'close modal-btn');
+      $modalBtnWrap.appendChild($modalCloseBtn);
       // end of modal elements
     }
 
+    // modal event listeners
     const $defaultModal = document.querySelector('.main-container');
-    const $listClicked = document.querySelector('.list-wrap');
     const $modal = document.querySelector('.hidden');
+    const $listClicked = document.querySelector('.list-wrap');
+    const $closeBtnClicked = document.querySelector('.close');
 
-    function openModal(event) {
+    $listClicked.addEventListener('click', function openModal(event) {
       $defaultModal.className = 'main-container modal-opened';
       $modal.className = 'show modal';
-    }
-    $listClicked.addEventListener('click', openModal);
+    });
 
+    $closeBtnClicked.addEventListener('click', function closeModal(event) {
+      $defaultModal.className = 'main-container';
+      $modal.className = 'hidden modal';
+    });
+    // end of modal event listeners
   });
   xhr.send();
 }
