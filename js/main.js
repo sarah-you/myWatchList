@@ -167,20 +167,28 @@ function getAnimeData(name) {
 
     // modal event listeners
     const $defaultModal = document.querySelector('.main-container');
-    const $modal = document.querySelector('.hidden');
-    const $listClicked = document.querySelector('.list-wrap');
-    const $closeBtnClicked = document.querySelector('.close');
+    const $modal = document.querySelectorAll('.modal');
+    const $ol = document.querySelector('#anime-list');
+    const $closeBtnClicked = document.querySelectorAll('.close');
 
-    $listClicked.addEventListener('click', function openModal(event) {
-      $defaultModal.className = 'main-container modal-opened';
-      $modal.className = 'show modal';
+    // modal pop up if user clicks on a show (added a conditional bc clicking outside the list showed error, since the event listener was on the ol and buttons in the modal are still part of the ol)
+    $ol.addEventListener('click', function openModal(event) {
+      if (event.target.tagName !== 'OL' && event.target.tagName !== 'LI' && event.target.tagName !== 'BUTTON') {
+        const $parentElement = event.target.closest('.list-wrap');
+        const $closestModal = $parentElement.nextElementSibling;
+        $defaultModal.className = 'main-container modal-opened';
+        $closestModal.className = 'show modal';
+      }
     });
 
-    $closeBtnClicked.addEventListener('click', function closeModal(event) {
-      $defaultModal.className = 'main-container';
-      $modal.className = 'hidden modal';
-    });
+    // close modal button (needed to use loop because close button event needs to be applied for all 25 list items)
+    for (let i = 0; i < $closeBtnClicked.length; i++) {
+      $closeBtnClicked[i].addEventListener('click', function closeModal(event) {
+        $defaultModal.className = 'main-container';
+        $modal[i].className = 'hidden modal';
+      });
     // end of modal event listeners
+    }
   });
   xhr.send();
 }
