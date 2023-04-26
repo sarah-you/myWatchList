@@ -65,23 +65,28 @@ function getAnimeData(name) {
       $hiddenModal.setAttribute('class', 'hidden modal');
       $top25List.appendChild($hiddenModal);
 
-      const $modalWrap = document.createElement('div');
-      $modalWrap.setAttribute('class', 'modal-wrap');
-      $hiddenModal.appendChild($modalWrap);
+      const $modalContainer = document.createElement('div');
+      $modalContainer.setAttribute('class', 'modal-container');
+      $hiddenModal.appendChild($modalContainer);
+
+      const $topRowWrap = document.createElement('div');
+      $topRowWrap.setAttribute('class', 'top-row-wrap');
+      $modalContainer.appendChild($topRowWrap);
 
       // hidden modal elements
       const $modalImgWrap = document.createElement('div');
       $modalImgWrap.setAttribute('class', 'img-wrap');
-      $modalWrap.appendChild($modalImgWrap);
+      $topRowWrap.appendChild($modalImgWrap);
 
       const $modalImg = document.createElement('img');
       const modalImgUrl = top25Data[i].images.jpg.image_url;
+      $modalImg.setAttribute('class', 'modal-img');
       $modalImg.setAttribute('src', modalImgUrl);
       $modalImgWrap.appendChild($modalImg);
 
       const $modalTextWrap = document.createElement('div');
       $modalTextWrap.setAttribute('class', 'modal-text-wrap');
-      $modalWrap.appendChild($modalTextWrap);
+      $topRowWrap.appendChild($modalTextWrap);
 
       const $modalTitle = document.createElement('p');
       $modalTitle.setAttribute('class', 'modal-title');
@@ -106,10 +111,23 @@ function getAnimeData(name) {
         $modalTextWrap.appendChild($modalGenres);
       }
 
+      const $synopsisWrap = document.createElement('div');
+      $synopsisWrap.setAttribute('class', 'synopsis-wrap');
+      $modalContainer.appendChild($synopsisWrap);
+
+      const $synopsisHeading = document.createElement('h3');
+      $synopsisHeading.setAttribute('class', 'synopsis-heading');
+      $synopsisHeading.textContent = 'Synopsis';
+      $synopsisWrap.appendChild($synopsisHeading);
+
       const $synopsis = document.createElement('p');
       $synopsis.setAttribute('class', 'synopsis');
       $synopsis.textContent = top25Data[i].synopsis;
-      $modalTextWrap.appendChild($synopsis);
+      $synopsisWrap.appendChild($synopsis);
+
+      const $trailerDiv = document.createElement('div');
+      $trailerDiv.setAttribute('class', 'trailer-wrap');
+      $modalContainer.appendChild($trailerDiv);
 
       const $trailer = document.createElement('iframe');
       $trailer.setAttribute('class', 'trailer');
@@ -118,14 +136,22 @@ function getAnimeData(name) {
       $trailer.setAttribute('allow', 'accelerometer, clipboard-write; encrypted-media; gyroscope; picture-in-picture'
       );
       $trailer.setAttribute('allowfullscreen', 'allowfullscreen');
-      $modalWrap.appendChild($trailer);
+      $trailerDiv.appendChild($trailer);
+
+      const $watchNowDiv = document.createElement('div');
+      $watchNowDiv.setAttribute('class', 'watch-now-wrap');
+      $modalContainer.appendChild($watchNowDiv);
 
       const $watchNow = document.createElement('a');
       $watchNow.textContent = 'Watch Now';
       const websiteLink = top25Data[i].url;
       $watchNow.setAttribute('href', websiteLink);
       $watchNow.setAttribute('class', 'watch-now');
-      $modalWrap.appendChild($watchNow);
+      $watchNowDiv.appendChild($watchNow);
+
+      const $modalCloseBtn = document.createElement('button');
+      $modalCloseBtn.setAttribute('class', 'modal-close-btn');
+      $modalContainer.appendChild($modalCloseBtn);
       // end of modal elements
     }
 
