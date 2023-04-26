@@ -1,3 +1,4 @@
+// api
 function getAnimeData(name) {
   const xhr = new XMLHttpRequest();
   const $list = document.querySelector('#anime-list');
@@ -5,19 +6,21 @@ function getAnimeData(name) {
   xhr.open('GET', 'https://api.jikan.moe/v4/top/anime');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    console.log('status: ', xhr.status);
-    console.log('response: ', xhr.response);
+    // console.log('status: ', xhr.status);
+    // console.log('response: ', xhr.response);
+
+    // DOM tree for all the data pulled from api
     const top25Data = xhr.response.data;
     for (let i = 0; i < top25Data.length; i++) {
       const $listWrap = document.createElement('div');
       $listWrap.setAttribute('class', 'list-wrap');
-      $list.appendChild($listWrap);
       const $top25List = document.createElement('li');
-      $listWrap.appendChild($top25List);
+      $top25List.appendChild($listWrap);
+      $list.appendChild($top25List);
 
       const $imgWrap = document.createElement('div');
       $imgWrap.setAttribute('class', 'img-wrap');
-      $top25List.appendChild($imgWrap);
+      $listWrap.appendChild($imgWrap);
 
       const $img = document.createElement('img');
       const imgUrl = top25Data[i].images.jpg.image_url;
@@ -26,7 +29,7 @@ function getAnimeData(name) {
 
       const $textWrap = document.createElement('div');
       $textWrap.setAttribute('class', 'text-wrap');
-      $top25List.appendChild($textWrap);
+      $listWrap.appendChild($textWrap);
 
       const $title = document.createElement('h3');
       $title.setAttribute('class', 'title');
@@ -34,11 +37,13 @@ function getAnimeData(name) {
       $textWrap.appendChild($title);
 
       const $rating = document.createElement('p');
-      $rating.textContent = top25Data[i].score + ' rating';
+      $rating.textContent = 'score: ' + top25Data[i].score;
+      $rating.setAttribute('class', 'score');
       $textWrap.appendChild($rating);
 
       const $scoreBy = document.createElement('p');
       $scoreBy.textContent = top25Data[i].scored_by + ' viewers';
+      $scoreBy.setAttribute('class', 'score-by');
       $textWrap.appendChild($scoreBy);
 
       const $genres = document.createElement('p');
