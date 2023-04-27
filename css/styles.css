@@ -1,0 +1,232 @@
+* {
+  font-family: montserrat, sans-serif;
+}
+
+.header {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+h1 {
+  font-family: Righteous, cursive;
+  color: #fb4d3d;
+  margin-left: 10rem;
+}
+
+.main-container {
+  background-color: #f0f0f0;
+  padding-top: 1rem;
+}
+
+#my-list {
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  margin-left: 3rem;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+p,
+a {
+  font-size: 1rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 2.5px;
+}
+
+ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+li {
+  display: flex;
+}
+
+.list-wrap {
+  display: flex;
+  flex-direction: row;
+  height: 12rem;
+  background-color: white;
+  margin: 1.5rem;
+  width: 90%;
+  box-shadow: 3px 4px 4px lightgray;
+  border-radius: 5px;
+}
+
+.list-wrap:hover {
+  cursor: pointer;
+  background: rgb(247 206 202/90%);
+}
+
+.list-wrap:active {
+  box-shadow: 0 5px 5px #fb4d3d;
+  transform: translateY(4px);
+  border-radius: 5px;
+}
+
+img {
+  height: 12rem;
+  border-radius: 5px;
+}
+
+.text-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  width: 70%;
+  height: 100%;
+}
+
+.title {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.score {
+  font-weight: bold;
+}
+
+.score,
+.score-by {
+  color: #fb4d3d;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-opened {
+  position: fixed;
+}
+
+.show {
+  background-color: rgb(0 0 0/90%);
+  height: auto;
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+  margin-top: 1rem;
+}
+
+.modal {
+  position: fixed;
+  right: 0;
+  left: 8%;
+  top: 0;
+  bottom: 0;
+}
+
+.modal-container {
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-row-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.modal-title,
+.modal-score,
+.modal-score-by,
+.modal-genres,
+.modal-episodes,
+.modal-duration,
+.synopsis-heading,
+.synopsis,
+.watch-now {
+  color: white;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-family: Righteous, sans-serif;
+  color: #fb4d3d;
+}
+
+.modal-text-wrap {
+  margin: 1rem;
+  margin-left: 5rem;
+  padding-top: 1rem;
+}
+
+.synopsis-heading {
+  text-align: center;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  color: #fb4d3d;
+}
+
+.synopsis {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.trailer-wrap {
+  margin-top: 3rem;
+}
+
+.watch-now-wrap {
+  margin-top: 1.5rem;
+}
+
+.modal-btn-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.modal-btn {
+  height: 3rem;
+  width: 8rem;
+  margin: 1rem 3rem;
+  border-radius: 30px;
+}
+
+.add {
+  border: #fb4d3d solid;
+  background: #fb4d3d;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.close {
+  border: white solid;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: white;
+  color: black;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.close:active {
+  box-shadow: 0 5px 5px black;
+  transform: translateY(3px);
+}
