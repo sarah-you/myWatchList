@@ -12,6 +12,7 @@
 h1 {
   font-family: Righteous, cursive;
   color: #fb4d3d;
+  margin-left: 10rem;
 }
 
 .main-container {
@@ -19,14 +20,10 @@ h1 {
   padding-top: 1rem;
 }
 
-.logo {
-  margin-left: 10rem;
-}
-
 #my-list {
   font-size: 1.5rem;
-  margin-left: 5rem;
   padding-top: 0.5rem;
+  margin-left: 3rem;
 }
 
 .heading {
@@ -137,7 +134,7 @@ img {
 }
 
 .modal-container {
-  margin: 20% auto;
+  margin: auto;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -149,13 +146,15 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 20rem;
+  margin-top: 1rem;
 }
 
 .modal-title,
 .modal-score,
 .modal-score-by,
 .modal-genres,
+.modal-episodes,
+.modal-duration,
 .synopsis-heading,
 .synopsis,
 .watch-now {

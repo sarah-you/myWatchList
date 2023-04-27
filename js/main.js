@@ -111,6 +111,16 @@ function getAnimeData(name) {
         $modalTextWrap.appendChild($modalGenres);
       }
 
+      const $modalEpisodes = document.createElement('p');
+      $modalEpisodes.setAttribute('class', 'modal-episodes');
+      $modalEpisodes.textContent = top25Data[i].episodes + ' eps';
+      $modalTextWrap.appendChild($modalEpisodes);
+
+      const $modalDuration = document.createElement('p');
+      $modalDuration.setAttribute('class', 'modal-duration');
+      $modalDuration.textContent = 'Duration: ' + top25Data[i].duration;
+      $modalTextWrap.appendChild($modalDuration);
+
       const $synopsisWrap = document.createElement('div');
       $synopsisWrap.setAttribute('class', 'synopsis-wrap');
       $modalContainer.appendChild($synopsisWrap);

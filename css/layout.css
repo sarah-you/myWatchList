@@ -1,14 +1,22 @@
 @media screen and (min-width: 768px) {
+  header {
+    width: 100%;
+  }
+
   li {
     justify-content: center;
   }
 
   .list-wrap {
-    flex-basis: 60%;
+    flex-basis: 50%;
     width: 60%;
   }
 
   .modal-container {
     width: 80%;
+  }
+
+  .top-row-wrap {
+    margin-top: 3rem;
   }
 }
