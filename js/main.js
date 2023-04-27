@@ -23,26 +23,6 @@ function getAnimeData() {
   xhr.send();
 }
 
-// close modal button (needed to use loop because close button event needs to be applied for all 25 list items)
-function closeModal($modal, $closeBtnClicked) {
-  for (let i = 0; i < $closeBtnClicked.length; i++) {
-    $closeBtnClicked[i].addEventListener('click', function () {
-      $defaultModal.className = 'main-container';
-      $modal[i].className = 'hidden modal';
-    });
-  }
-}
-
-// modal pop up if user clicks on a show (added a conditional bc clicking outside the list showed error, since the event listener was on the ol and buttons in the modal are still part of the ol)
-$ol.addEventListener('click', function openModal(event) {
-  if (event.target.tagName !== 'OL' && event.target.tagName !== 'LI' && event.target.tagName !== 'BUTTON') {
-    const $parentElement = event.target.closest('.list-wrap');
-    const $closestModal = $parentElement.nextElementSibling;
-    $defaultModal.className = 'main-container modal-opened';
-    $closestModal.className = 'show modal';
-  }
-});
-
 // DOM tree for all the api data
 function renderList(top25Data) {
   for (let i = 0; i < top25Data.length; i++) {
@@ -209,7 +189,27 @@ function renderList(top25Data) {
   // end of modal elements
   }
 }
-
+// when window is loaded, the api data and rendered lists and buttons are all called
 window.addEventListener('DOMContentLoaded', function () {
   getAnimeData();
+});
+
+// close modal button (needed to use loop because close button event needs to be applied for all 25 list items)
+function closeModal($modal, $closeBtnClicked) {
+  for (let i = 0; i < $closeBtnClicked.length; i++) {
+    $closeBtnClicked[i].addEventListener('click', function () {
+      $defaultModal.className = 'main-container';
+      $modal[i].className = 'hidden modal';
+    });
+  }
+}
+
+// modal pop up if user clicks on a show (added a conditional bc clicking outside the list showed error, since the event listener was on the ol and buttons in the modal are still part of the ol)
+$ol.addEventListener('click', function openModal(event) {
+  if (event.target.tagName !== 'OL' && event.target.tagName !== 'LI' && event.target.tagName !== 'BUTTON') {
+    const $parentElement = event.target.closest('.list-wrap');
+    const $closestModal = $parentElement.nextElementSibling;
+    $defaultModal.className = 'main-container modal-opened';
+    $closestModal.className = 'show modal';
+  }
 });
