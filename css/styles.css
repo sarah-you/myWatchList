@@ -17,16 +17,23 @@ h1 {
 
 .main-container {
   background-color: #f0f0f0;
+  width: 100%;
   padding-top: 1rem;
 }
 
-#my-list {
+#my-list-head {
   font-size: 1.5rem;
   padding-top: 0.5rem;
   margin-left: 3rem;
 }
 
 .heading {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.subheading {
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
@@ -212,6 +219,15 @@ img {
   color: white;
   font-size: 1rem;
   font-weight: bold;
+}
+
+.add:hover {
+  cursor: pointer;
+}
+
+.add:active {
+  box-shadow: 0 5px 5px black;
+  transform: translateY(3px);
 }
 
 .close {

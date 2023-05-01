@@ -19,18 +19,22 @@
       <h1 class="logo">
         MyWatchList
       </h1>
-      <h2 id="my-list">
+      <h2 id="my-list-head">
         My List
       </h2>
     </div>
   </header>
   <main>
     <div class="main-container">
-      <h3 class="heading">Top 25 Anime List 2023</h3>
-      <div class="main-page">
-        <ol id="anime-list"></ol>
+      <h3 class="heading display">Top 25 Anime List 2023</h3>
+      <h3 class="subheading hidden">My List</h3>
+      <div data-view="main-page-list" id="main-page-list">
+        <div class="main-page">
+          <ol id="anime-list"></ol>
+        </div>
+        <div data-view="my-list" id="my-list" class="hidden">
+        </div>
       </div>
-    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

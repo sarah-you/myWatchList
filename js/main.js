@@ -16,32 +16,15 @@ function getAnimeData() {
     renderList(top25Data);
     // variables needed to call close modal function
     const $modal = document.querySelectorAll('.modal');
-    const $closeBtnClicked = document.querySelectorAll('.close');
+    const $closeBtn = document.querySelectorAll('.close');
     // calling close modal function
-    closeModal($modal, $closeBtnClicked);
+    closeModal($modal, $closeBtn);
+    // calling add to my list function
+    const $addBtn = document.querySelectorAll('.add');
+    addToMyList($modal, $addBtn);
   });
   xhr.send();
 }
-
-// close modal button (needed to use loop because close button event needs to be applied for all 25 list items)
-function closeModal($modal, $closeBtnClicked) {
-  for (let i = 0; i < $closeBtnClicked.length; i++) {
-    $closeBtnClicked[i].addEventListener('click', function () {
-      $defaultModal.className = 'main-container';
-      $modal[i].className = 'hidden modal';
-    });
-  }
-}
-
-// modal pop up if user clicks on a show (added a conditional bc clicking outside the list showed error, since the event listener was on the ol and buttons in the modal are still part of the ol)
-$ol.addEventListener('click', function openModal(event) {
-  if (event.target.tagName !== 'OL' && event.target.tagName !== 'LI' && event.target.tagName !== 'BUTTON') {
-    const $parentElement = event.target.closest('.list-wrap');
-    const $closestModal = $parentElement.nextElementSibling;
-    $defaultModal.className = 'main-container modal-opened';
-    $closestModal.className = 'show modal';
-  }
-});
 
 // DOM tree for all the api data
 function renderList(top25Data) {
@@ -200,6 +183,7 @@ function renderList(top25Data) {
     const $modalAddBtn = document.createElement('button');
     $modalAddBtn.textContent = '+ Add';
     $modalAddBtn.setAttribute('class', 'add modal-btn');
+    $modalAddBtn.setAttribute('type', 'submit');
     $modalBtnWrap.appendChild($modalAddBtn);
 
     const $modalCloseBtn = document.createElement('button');
@@ -213,3 +197,55 @@ function renderList(top25Data) {
 window.addEventListener('DOMContentLoaded', function () {
   getAnimeData();
 });
+
+// close modal button (needed to use loop because close button event needs to be applied for all 25 list items)
+function closeModal($modal, $closeBtn) {
+  for (let i = 0; i < $closeBtn.length; i++) {
+    $closeBtn[i].addEventListener('click', function () {
+      $defaultModal.className = 'main-container';
+      $modal[i].className = 'hidden modal';
+    });
+  }
+}
+
+// modal pop up if user clicks on a show (added a conditional bc clicking outside the list showed error, since the event listener was on the ol and buttons in the modal are still part of the ol)
+$ol.addEventListener('click', function openModal(event) {
+  if (event.target.tagName !== 'OL' && event.target.tagName !== 'LI' && event.target.tagName !== 'BUTTON') {
+    const $parentElement = event.target.closest('.list-wrap');
+    const $closestModal = $parentElement.nextElementSibling;
+    $defaultModal.className = 'main-container modal-opened';
+    $closestModal.className = 'show modal';
+  }
+});
+
+// clicking add button adds to My List
+function addToMyList($addBtn) {
+  for (let i = 0; i < $addBtn.length; i++) {
+    $addBtn[i].addEventListener('click', function saveToMyList(event) {
+      viewSwap('my-list');
+    });
+
+  }
+}
+
+// viewswap between main page & my list
+const $mainPage = document.querySelector('#main-page-list');
+const $myList = document.querySelector('#my-list');
+
+function viewSwap(viewName) {
+  const $top25ListHeading = document.querySelector('.heading');
+  const $myListHeading = document.querySelector('.subheading');
+  if (viewName === 'main-page-list') {
+    $mainPage.setAttribute('class', 'display');
+    $myList.setAttribute('class', 'hidden');
+    $top25ListHeading.setAttribute('class', 'heading display');
+    $myListHeading.setAttribute('class', 'subheading hidden');
+    data.view = viewName;
+  } else {
+    $myList.setAttribute('class', 'display');
+    $mainPage.setAttribute('class', 'hidden');
+    $top25ListHeading.setAttribute('class', 'heading hidden');
+    $myListHeading.setAttribute('class', 'subheading display');
+    data.view = viewName;
+  }
+}
