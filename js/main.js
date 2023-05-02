@@ -14,14 +14,16 @@ function getAnimeData() {
     // call function for DOM tree for all the data pulled from api
     const top25Data = xhr.response.data;
     renderList(top25Data);
+    // add all the api data into local storage under entries
+    data.entries = xhr.response.data;
     // variables needed to call close modal function
     const $modal = document.querySelectorAll('.modal');
     const $closeBtn = document.querySelectorAll('.close');
     // calling close modal function
     closeModal($modal, $closeBtn);
     // calling add to my list function
-    const $addBtn = document.querySelectorAll('.add');
-    addToMyList($modal, $addBtn);
+    // const $addBtn = document.querySelectorAll('.add');
+    // addToMyList($addBtn);
   });
   xhr.send();
 }
@@ -78,6 +80,13 @@ function renderList(top25Data) {
     $duration.textContent = top25Data[i].duration;
     $textWrap.appendChild($duration);
 
+    const $malId = document.createElement('p');
+    $malId.setAttribute('class', 'hidden');
+    $malId.setAttribute('id', 'mal-id');
+    $malId.textContent = 'id: ' + top25Data[i].mal_id;
+    $textWrap.appendChild($malId);
+
+    // hidden modal elements
     const $hiddenModal = document.createElement('div');
     $hiddenModal.setAttribute('class', 'hidden modal');
     $top25List.appendChild($hiddenModal);
@@ -90,7 +99,6 @@ function renderList(top25Data) {
     $topRowWrap.setAttribute('class', 'top-row-wrap');
     $modalContainer.appendChild($topRowWrap);
 
-    // hidden modal elements
     const $modalImgWrap = document.createElement('div');
     $modalImgWrap.setAttribute('class', 'img-wrap');
     $topRowWrap.appendChild($modalImgWrap);
@@ -204,6 +212,7 @@ function closeModal($modal, $closeBtn) {
     $closeBtn[i].addEventListener('click', function () {
       $defaultModal.className = 'main-container';
       $modal[i].className = 'hidden modal';
+      viewSwap('main-page-list');
     });
   }
 }
@@ -215,18 +224,24 @@ $ol.addEventListener('click', function openModal(event) {
     const $closestModal = $parentElement.nextElementSibling;
     $defaultModal.className = 'main-container modal-opened';
     $closestModal.className = 'show modal';
+    viewSwap('main-page-list');
   }
 });
 
-// clicking add button adds to My List
-function addToMyList($addBtn) {
-  for (let i = 0; i < $addBtn.length; i++) {
-    $addBtn[i].addEventListener('click', function saveToMyList(event) {
-      viewSwap('my-list');
-    });
-
-  }
-}
+// clicking add button adds to My List page
+// function addToMyList($addBtn) {
+//   for (let i = 0; i < $addBtn.length; i++) {
+//     $addBtn[i].addEventListener('click', function saveToMyList(event) {
+//       const $parentElement = event.target.closest('#mal-id');
+//       for (let i = 0; i < data.entries.length; i++) {
+//         if (data.entries[i].mal_id === $parentElement) {
+//           data.myList = data.entries[i];
+//         }
+//       }
+//       viewSwap('my-list');
+//     });
+//   }
+// }
 
 // viewswap between main page & my list
 const $mainPage = document.querySelector('#main-page-list');

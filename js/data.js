@@ -3,6 +3,7 @@
 var data = {
   view: 'main-page-list',
   entries: [],
+  myList: [],
   nextListId: 1
 };
 
