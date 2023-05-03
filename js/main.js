@@ -177,8 +177,7 @@ function renderList(top25Data, listLocation, direction) {
   $trailer.setAttribute('class', 'trailer');
   $trailer.setAttribute('src', top25Data.trailer.embed_url);
   $trailer.setAttribute('frameborder', '0');
-  $trailer.setAttribute('allow', 'accelerometer, clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-  );
+  $trailer.setAttribute('allow', 'accelerometer, clipboard-write; encrypted-media; gyroscope; picture-in-picture');
   $trailer.setAttribute('allowfullscreen', 'allowfullscreen');
   $trailerDiv.appendChild($trailer);
 
@@ -199,7 +198,7 @@ function renderList(top25Data, listLocation, direction) {
 
   const $modalAddBtn = document.createElement('button');
   $modalAddBtn.textContent = '+ Add';
-  $modalAddBtn.setAttribute('class', 'add modal-btn');
+  $modalAddBtn.setAttribute('class', 'add modal-btn btn-display');
   $modalAddBtn.setAttribute('type', 'submit');
   $modalBtnWrap.appendChild($modalAddBtn);
 
@@ -224,7 +223,6 @@ function closeModal($modal, $closeBtn) {
     $closeBtn[i].addEventListener('click', function () {
       $defaultModal.className = 'main-container';
       $modal[i].className = 'hidden modal';
-      viewSwap('main-page-list');
     });
   }
 }
@@ -236,7 +234,6 @@ function openModal(event) {
     const $closestModal = $parentElement.nextElementSibling;
     $defaultModal.className = 'main-container modal-opened';
     $closestModal.className = 'show modal';
-    // viewSwap('main-page-list');
   }
 }
 $ol.addEventListener('click', openModal);
@@ -245,11 +242,12 @@ $ol.addEventListener('click', openModal);
 const $savedList = document.getElementById('my-saved-list');
 $savedList.addEventListener('click', openModal);
 function addToMyList($addBtn) {
-  viewSwap('my-list');
   for (let i = 0; i < $addBtn.length; i++) {
     $addBtn[i].addEventListener('click', function saveToMyList(event) {
-      // set default modal class name to keep the modals visible
+      // set default modal class name and hides modal after adding to list and returning to main page
       $defaultModal.className = 'main-container';
+      const $hiddenModal = document.querySelector('.show');
+      $hiddenModal.className = 'hidden modal';
       // if the selected show's id matches the id of show saved in the entries list, all the data will be rendered on the my List page
       const $parentElement = event.target.closest('li');
       for (let j = 0; j < data.entries.length; j++) {
@@ -258,6 +256,7 @@ function addToMyList($addBtn) {
           renderList(data.entries[j], $savedList, 'asc');
         }
       }
+      viewSwap('my-list');
     });
   }
 }
@@ -275,12 +274,20 @@ function viewSwap(viewName) {
     $top25ListHeading.setAttribute('class', 'heading display');
     $myListHeading.setAttribute('class', 'subheading hidden');
     data.view = viewName;
+    // variables needed to call close modal function
+    const $modal = document.querySelectorAll('.modal');
+    const $closeBtn = document.querySelectorAll('.close');
+    closeModal($modal, $closeBtn);
   } else {
     $myList.setAttribute('class', 'display');
     $mainPage.setAttribute('class', 'hidden');
     $top25ListHeading.setAttribute('class', 'heading hidden');
     $myListHeading.setAttribute('class', 'subheading display');
     data.view = viewName;
+    // variables needed to call close modal function
+    const $modal = document.querySelectorAll('.modal');
+    const $closeBtn = document.querySelectorAll('.close');
+    closeModal($modal, $closeBtn);
   }
 }
 

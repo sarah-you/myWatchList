@@ -1,5 +1,6 @@
 /* exported data */
 // local storage to add to my list
+
 var data = {
   view: 'main-page-list',
   entries: [],
