@@ -95,6 +95,12 @@ function renderList(top25Data, listLocation, direction) {
   $malId.textContent = 'id: ' + top25Data.mal_id;
   $textWrap.appendChild($malId);
 
+  const $modalAddBtn = document.createElement('button');
+  $modalAddBtn.textContent = '+ Add';
+  $modalAddBtn.setAttribute('class', 'add modal-btn');
+  $modalAddBtn.setAttribute('id', 'add-btn');
+  $listWrap.appendChild($modalAddBtn);
+
   // hidden modal elements
   const $hiddenModal = document.createElement('div');
   $hiddenModal.setAttribute('class', 'hidden modal');
@@ -196,12 +202,6 @@ function renderList(top25Data, listLocation, direction) {
   $modalBtnWrap.setAttribute('class', 'modal-btn-wrap');
   $modalContainer.appendChild($modalBtnWrap);
 
-  const $modalAddBtn = document.createElement('button');
-  $modalAddBtn.textContent = '+ Add';
-  $modalAddBtn.setAttribute('class', 'add modal-btn btn-display');
-  $modalAddBtn.setAttribute('type', 'submit');
-  $modalBtnWrap.appendChild($modalAddBtn);
-
   const $modalCloseBtn = document.createElement('button');
   $modalCloseBtn.textContent = 'Close';
   $modalCloseBtn.setAttribute('class', 'close modal-btn');
@@ -246,9 +246,9 @@ function addToMyList($addBtn) {
     $addBtn[i].addEventListener('click', function saveToMyList(event) {
       // set default modal class name and hides modal after adding to list and returning to main page
       $defaultModal.className = 'main-container';
-      const $hiddenModal = document.querySelector('.show');
+      const $hiddenModal = document.querySelector('.modal');
       $hiddenModal.className = 'hidden modal';
-      // if the selected show's id matches the id of show saved in the entries list, all the data will be rendered on the my List page
+      // if the selected show's id matches the id of closest show saved in the entries list, all the data will be rendered on the my List page
       const $parentElement = event.target.closest('li');
       for (let j = 0; j < data.entries.length; j++) {
         if (data.entries[j].mal_id === Number($parentElement.getAttribute('id'))) {
@@ -278,6 +278,14 @@ function viewSwap(viewName) {
     const $modal = document.querySelectorAll('.modal');
     const $closeBtn = document.querySelectorAll('.close');
     closeModal($modal, $closeBtn);
+    if ($myList.getAttribute('class') === 'hidden') {
+      const $myListAddBtn = document.querySelectorAll('#add-btn');
+      for (let i = 0; i < $myListAddBtn.length; i++) {
+        $myListAddBtn[i].style.visibility = 'visible';
+      }
+    }
+
+    // viewSwap for My List page
   } else {
     $myList.setAttribute('class', 'display');
     $mainPage.setAttribute('class', 'hidden');
@@ -288,6 +296,12 @@ function viewSwap(viewName) {
     const $modal = document.querySelectorAll('.modal');
     const $closeBtn = document.querySelectorAll('.close');
     closeModal($modal, $closeBtn);
+    if ($myList.getAttribute('class') === 'display') {
+      const $myListAddBtn = document.querySelectorAll('#add-btn');
+      for (let i = 0; i < $myListAddBtn.length; i++) {
+        $myListAddBtn[i].style.visibility = 'hidden';
+      }
+    }
   }
 }
 
