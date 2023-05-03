@@ -3,8 +3,7 @@
 var data = {
   view: 'main-page-list',
   entries: [],
-  myList: [],
-  nextListId: 1
+  myList: []
 };
 
 function beforeUnload(event) {
