@@ -239,6 +239,16 @@ img {
   border: white solid 3px;
 }
 
+.save-btn:hover {
+  background-color: white;
+}
+
+.save-btn:active {
+  background-color: #fb4d3d;
+  color: black;
+  transform: translateY(3px);
+}
+
 .modal-btn-wrap {
   display: flex;
   justify-content: space-between;

@@ -15,6 +15,7 @@ function getAnimeData() {
     // by having the render function inside for loop, the renderList function becomes reusable for main page and my list page
     for (let i = 0; i < top25Data.length; i++) {
       renderList(top25Data[i], $list, 'desc');
+
     }
     // add all the api data into local storage under entries
     data.entries = xhr.response.data;
@@ -200,6 +201,7 @@ function renderList(top25Data, listLocation, direction) {
   // comment section
   const $commentWrap = document.createElement('div');
   $commentWrap.setAttribute('class', 'comment-wrap');
+  $commentWrap.setAttribute('id', top25Data.mal_id);
   $commentWrap.setAttribute('style', 'visibility: hidden');
   $modalContainer.appendChild($commentWrap);
 
@@ -210,6 +212,7 @@ function renderList(top25Data, listLocation, direction) {
 
   const $commentSection = document.createElement('textarea');
   $commentSection.setAttribute('class', 'textarea');
+  $commentSection.setAttribute('id', 'my-comment');
   $commentSection.setAttribute('placeholder', 'delete comment by removing all text and clicking SAVE. To edit, click the comment box and make your changes! Make sure to hit SAVE');
   $commentSection.setAttribute('rows', '8');
   $commentSection.setAttribute('cols', '35');
@@ -259,15 +262,21 @@ function openModal(event) {
     $closestModal.className = 'show modal';
   }
   // clicking My Comment's SAVE Button stores the user's input to local storage
-  const $saveBtn = document.querySelector('.save-btn');
-  $saveBtn.addEventListener('click', function () {
-    event.preventDefault();
-    // const $parentElement = event.target.closest('li');
-    // for (let j = 0; j < data.entries.length; j++) {
-    //   if (data.entries[j].mal_id === Number($parentElement.getAttribute('id'))) {
-    //     data.myList.unshift(data.entries[j]);
-    //     renderList(data.entries[j], $savedList, 'asc');
-  });
+  const $saveBtn = document.querySelectorAll('.save-btn');
+  for (let i = 0; i < $saveBtn.length; i++) {
+    $saveBtn[i].addEventListener('click', function () {
+      event.preventDefault();
+      let userInput = {};
+      const $textArea = document.querySelectorAll('.textarea');
+      const $parentElement = event.target.closest('div');
+      const $listId = event.target.closest('li');
+      if (Number($listId.getAttribute('id')) === Number($parentElement.getAttribute('id'))) {
+        userInput = $textArea[i].value;
+        data.myComments.unshift(userInput[i]);
+        renderList(data.myList[i], $savedList, 'asc');
+      }
+    });
+  }
 }
 $list.addEventListener('click', openModal);
 
