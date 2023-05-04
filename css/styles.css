@@ -205,6 +205,40 @@ img {
   margin-top: 1.5rem;
 }
 
+.watch-now:hover {
+  color: #fb4d3d;
+}
+
+.comment-wrap {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-heading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fb4d3d;
+  text-align: start;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.textarea {
+  border: white solid 3px;
+  background-color: rgba(255, 232, 206, 0.9);
+}
+
+.save-btn {
+  color: #fb4d3d;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 2.5rem;
+  background-color: rgba(255, 232, 206, 0.9);
+  padding: 0;
+  border: white solid 3px;
+}
+
 .modal-btn-wrap {
   display: flex;
   justify-content: space-between;
@@ -249,6 +283,7 @@ img {
 
 .close:hover {
   cursor: pointer;
+  background-color: #e6e6e6;
 }
 
 .close:active {

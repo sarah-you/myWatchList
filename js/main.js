@@ -1,7 +1,6 @@
 // global variables
 const $list = document.querySelector('#anime-list');
 const $defaultModal = document.querySelector('.main-container');
-const $ol = document.querySelector('#anime-list');
 
 // api request
 function getAnimeData() {
@@ -198,6 +197,30 @@ function renderList(top25Data, listLocation, direction) {
   $watchNow.setAttribute('class', 'watch-now');
   $watchNowDiv.appendChild($watchNow);
 
+  // comment section
+  const $commentWrap = document.createElement('div');
+  $commentWrap.setAttribute('class', 'comment-wrap');
+  $commentWrap.setAttribute('style', 'visibility: hidden');
+  $modalContainer.appendChild($commentWrap);
+
+  const $commentHeading = document.createElement('p');
+  $commentHeading.setAttribute('class', 'comment-heading');
+  $commentHeading.textContent = 'My Comment';
+  $commentWrap.appendChild($commentHeading);
+
+  const $commentSection = document.createElement('textarea');
+  $commentSection.setAttribute('class', 'textarea');
+  $commentSection.setAttribute('placeholder', 'delete comment by removing all text and clicking SAVE. To edit, click the comment box and make your changes! Make sure to hit SAVE');
+  $commentSection.setAttribute('rows', '8');
+  $commentSection.setAttribute('cols', '35');
+  $commentWrap.appendChild($commentSection);
+
+  const $commentSaveBtn = document.createElement('button');
+  $commentSaveBtn.setAttribute('class', 'save-btn');
+  $commentSaveBtn.textContent = 'SAVE';
+  $commentWrap.appendChild($commentSaveBtn);
+  // end of comment section
+
   const $modalBtnWrap = document.createElement('div');
   $modalBtnWrap.setAttribute('class', 'modal-btn-wrap');
   $modalContainer.appendChild($modalBtnWrap);
@@ -229,14 +252,24 @@ function closeModal($modal, $closeBtn) {
 // modal pop up if user clicks on a show
 // (added a conditional bc clicking outside the list showed error, since the event listener was on the <ol> and buttons in the modal are still part of the <ol>)
 function openModal(event) {
-  if (event.target.tagName !== 'OL' && event.target.tagName !== 'LI' && event.target.tagName !== 'BUTTON') {
+  if (event.target.tagName !== 'OL' && event.target.tagName !== 'LI' && event.target.tagName !== 'BUTTON' && event.target.tagName !== 'TEXTAREA') {
     const $parentElement = event.target.closest('.list-wrap');
     const $closestModal = $parentElement.nextElementSibling;
     $defaultModal.className = 'main-container modal-opened';
     $closestModal.className = 'show modal';
   }
+  // clicking My Comment's SAVE Button stores the user's input to local storage
+  const $saveBtn = document.querySelector('.save-btn');
+  $saveBtn.addEventListener('click', function () {
+    event.preventDefault();
+    // const $parentElement = event.target.closest('li');
+    // for (let j = 0; j < data.entries.length; j++) {
+    //   if (data.entries[j].mal_id === Number($parentElement.getAttribute('id'))) {
+    //     data.myList.unshift(data.entries[j]);
+    //     renderList(data.entries[j], $savedList, 'asc');
+  });
 }
-$ol.addEventListener('click', openModal);
+$list.addEventListener('click', openModal);
 
 // clicking add button adds to My List page
 const $savedList = document.getElementById('my-saved-list');
@@ -278,10 +311,16 @@ function viewSwap(viewName) {
     const $modal = document.querySelectorAll('.modal');
     const $closeBtn = document.querySelectorAll('.close');
     closeModal($modal, $closeBtn);
+    // since add button is on each list's modal, use loop to show each one on main page
     if ($myList.getAttribute('class') === 'hidden') {
       const $myListAddBtn = document.querySelectorAll('#add-btn');
       for (let i = 0; i < $myListAddBtn.length; i++) {
         $myListAddBtn[i].style.visibility = 'visible';
+      }
+      // since My Comment is on each list's modal, use loop to hide each one on main page
+      const $myComment = document.querySelectorAll('.comment-wrap');
+      for (let i = 0; i < $myComment.length; i++) {
+        $myComment[i].style.visibility = 'hidden';
       }
     }
 
@@ -296,10 +335,16 @@ function viewSwap(viewName) {
     const $modal = document.querySelectorAll('.modal');
     const $closeBtn = document.querySelectorAll('.close');
     closeModal($modal, $closeBtn);
+    // since add button is on each list's modal, use loop to hide each one on My List page
     if ($myList.getAttribute('class') === 'display') {
       const $myListAddBtn = document.querySelectorAll('#add-btn');
       for (let i = 0; i < $myListAddBtn.length; i++) {
         $myListAddBtn[i].style.visibility = 'hidden';
+      }
+      // since My Comment is on each list's modal, use loop to show each one on My List page
+      const $myComment = document.querySelectorAll('.comment-wrap');
+      for (let i = 0; i < $myComment.length; i++) {
+        $myComment[i].style.visibility = 'visible';
       }
     }
   }
