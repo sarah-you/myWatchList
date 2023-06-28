@@ -2,6 +2,10 @@
   font-family: montserrat, sans-serif;
 }
 
+body {
+  background-color: rgba(255, 232, 206, 0.9);
+}
+
 .header {
   background-color: rgba(255, 232, 206, 0.9);
   display: flex;
@@ -205,6 +209,10 @@ img {
   margin-top: 1.5rem;
 }
 
+.watch-now:hover {
+  color: #fb4d3d;
+}
+
 .modal-btn-wrap {
   display: flex;
   justify-content: space-between;
@@ -254,4 +262,14 @@ img {
 .close:active {
   box-shadow: 0 5px 5px black;
   transform: translateY(3px);
+}
+
+@media screen and (max-width: 768px) {
+  .img-wrap {
+    width: 90%;
+  }
+
+  .modal-text-wrap {
+    margin-left: 0;
+  }
 }
