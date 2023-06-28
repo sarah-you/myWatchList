@@ -95,11 +95,15 @@ function renderList(top25Data, listLocation, direction) {
   $malId.textContent = 'id: ' + top25Data.mal_id;
   $textWrap.appendChild($malId);
 
+  const $addBtnWrap = document.createElement('div');
+  $addBtnWrap.setAttribute('class', 'add-btn-wrap');
+  $listWrap.appendChild($addBtnWrap);
+
   const $modalAddBtn = document.createElement('button');
   $modalAddBtn.textContent = '+ Add';
   $modalAddBtn.setAttribute('class', 'add modal-btn');
   $modalAddBtn.setAttribute('id', 'add-btn');
-  $listWrap.appendChild($modalAddBtn);
+  $addBtnWrap.appendChild($modalAddBtn);
 
   // hidden modal elements
   const $hiddenModal = document.createElement('div');
