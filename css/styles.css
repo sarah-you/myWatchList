@@ -93,7 +93,25 @@ li {
   border-radius: 10px;
 }
 
-img {
+.remove-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.remove-btn-icon {
+  width: 1.5rem;
+}
+
+.remove-btn-text {
+  font-size: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.main-img {
   height: 12rem;
   border-radius: 10px;
 }

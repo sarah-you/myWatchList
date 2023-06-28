@@ -46,6 +46,20 @@ function renderList(top25Data, listLocation, direction) {
     listLocation.prepend($top25List);
   }
 
+  const $removeBtnWrap = document.createElement('div');
+  $removeBtnWrap.setAttribute('class', 'remove-btn-wrap');
+  $listWrap.appendChild($removeBtnWrap);
+
+  const $removeBtnIcon = document.createElement('img');
+  $removeBtnIcon.setAttribute('src', 'images/remove-btn-icon.svg');
+  $removeBtnIcon.setAttribute('class', 'remove-btn-icon');
+  $removeBtnWrap.appendChild($removeBtnIcon);
+
+  const $removeBtnText = document.createElement('p');
+  $removeBtnText.setAttribute('class', 'remove-btn-text');
+  $removeBtnText.textContent = 'Remove from myList';
+  $removeBtnWrap.appendChild($removeBtnText);
+
   const $imgWrap = document.createElement('div');
   $imgWrap.setAttribute('class', 'img-wrap');
   $listWrap.appendChild($imgWrap);
@@ -53,6 +67,7 @@ function renderList(top25Data, listLocation, direction) {
   const $img = document.createElement('img');
   const imgUrl = top25Data.images.jpg.image_url;
   $img.setAttribute('src', imgUrl);
+  $img.setAttribute('class', 'main-img');
   $imgWrap.appendChild($img);
 
   const $textWrap = document.createElement('div');
