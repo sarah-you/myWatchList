@@ -105,10 +105,18 @@ li {
   width: 1.5rem;
 }
 
-.remove-btn-text {
+.remove-btn {
   font-size: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
+  border: none;
+  background-color: rgb(248, 234, 227);
+}
+
+.remove-btn-icon:hover,
+.remove-btn:hover {
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .main-img {
@@ -289,7 +297,7 @@ li {
   .list-wrap {
     display: flex;
     flex-direction: column;
-    height: 28rem;
+    height: 30rem;
   }
 
   .text-wrap {

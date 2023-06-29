@@ -27,6 +27,9 @@ function getAnimeData() {
     // calling add to my list function
     const $addBtn = document.querySelectorAll('.add');
     addToMyList($addBtn);
+    // calling remove from my list function
+    // const $removeBtnWrap = document.querySelectorAll('.remove-btn-wrap');
+    // removeShow($removeBtnWrap);
   });
   xhr.send();
 }
@@ -46,19 +49,19 @@ function renderList(top25Data, listLocation, direction) {
     listLocation.prepend($top25List);
   }
 
-  const $removeBtnWrap = document.createElement('div');
-  $removeBtnWrap.setAttribute('class', 'remove-btn-wrap');
-  $listWrap.appendChild($removeBtnWrap);
+  // const $removeBtnWrap = document.createElement('div');
+  // $removeBtnWrap.setAttribute('class', 'remove-btn-wrap');
+  // $listWrap.appendChild($removeBtnWrap);
 
-  const $removeBtnIcon = document.createElement('img');
-  $removeBtnIcon.setAttribute('src', 'images/remove-btn-icon.svg');
-  $removeBtnIcon.setAttribute('class', 'remove-btn-icon');
-  $removeBtnWrap.appendChild($removeBtnIcon);
+  // const $removeBtnIcon = document.createElement('img');
+  // $removeBtnIcon.setAttribute('src', 'images/remove-btn-icon.svg');
+  // $removeBtnIcon.setAttribute('class', 'remove-btn-icon');
+  // $removeBtnWrap.appendChild($removeBtnIcon);
 
-  const $removeBtnText = document.createElement('p');
-  $removeBtnText.setAttribute('class', 'remove-btn-text');
-  $removeBtnText.textContent = 'Remove from myList';
-  $removeBtnWrap.appendChild($removeBtnText);
+  // const $removeBtnText = document.createElement('button');
+  // $removeBtnText.setAttribute('class', 'remove-btn');
+  // $removeBtnText.textContent = 'Remove from myList';
+  // $removeBtnWrap.appendChild($removeBtnText);
 
   const $imgWrap = document.createElement('div');
   $imgWrap.setAttribute('class', 'img-wrap');
@@ -257,16 +260,14 @@ function openModal(event) {
 }
 $ol.addEventListener('click', openModal);
 
-// clicking add button adds to My List page
+// allows modals to open in myList
 const $savedList = document.getElementById('my-saved-list');
 $savedList.addEventListener('click', openModal);
+
+// clicking add button adds show to My List page
 function addToMyList($addBtn) {
   for (let i = 0; i < $addBtn.length; i++) {
     $addBtn[i].addEventListener('click', function saveToMyList(event) {
-      // set default modal class name and hides modal after adding to list and returning to main page
-      $defaultModal.className = 'main-container';
-      const $hiddenModal = document.querySelector('.modal');
-      $hiddenModal.className = 'hidden modal';
       // if the selected show's id matches the id of closest show saved in the entries list, all the data will be rendered on the my List page
       const $parentElement = event.target.closest('li');
       for (let j = 0; j < data.entries.length; j++) {
@@ -279,6 +280,22 @@ function addToMyList($addBtn) {
     });
   }
 }
+
+// clicking remove button removes show from My List page
+// function removeShow($removeBtnWrap) {
+//   for (let i = 0; i < $removeBtnWrap.length; i++) {
+//     $removeBtnWrap[i].addEventListener('click', function removeFromMyList(event) {
+//       const $parentElement = event.target.closest('li');
+//       for (let j = 0; j < data.entries.length; j++) {
+//         if (data.entries[j].mal_id === Number($parentElement.getAttribute('id'))) {
+//           data.myList.splice(data.entries[j], 1);
+//           renderList(data.entries[j], $savedList, 'asc');
+//         }
+//       }
+//       viewSwap('main-page-list');
+//     });
+//   }
+// }
 
 // viewswap between main page & my list
 const $mainPage = document.querySelector('#main-page-list');
@@ -299,8 +316,12 @@ function viewSwap(viewName) {
     closeModal($modal, $closeBtn);
     if ($myList.getAttribute('class') === 'hidden') {
       const $myListAddBtn = document.querySelectorAll('#add-btn');
+      // const $removeBtnIcon = document.querySelectorAll('.remove-btn-icon');
+      // const $removeBtnText = document.querySelectorAll('.remove-btn');
       for (let i = 0; i < $myListAddBtn.length; i++) {
         $myListAddBtn[i].style.visibility = 'visible';
+        // $removeBtnIcon[i].style.visibility = 'hidden';
+        // $removeBtnText[i].style.visibility = 'hidden';
       }
     }
 
