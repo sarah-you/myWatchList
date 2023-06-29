@@ -292,3 +292,41 @@ li {
   box-shadow: 0 5px 5px black;
   transform: translateY(3px);
 }
+
+@media screen and (max-width: 768px) {
+  .list-wrap {
+    display: flex;
+    flex-direction: column;
+    height: 30rem;
+  }
+
+  .text-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .img-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .modal-text-wrap {
+    margin-left: 0;
+  }
+
+  .add-btn-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .add {
+    margin-top: 0;
+  }
+
+  .top-row-wrap {
+    align-items: center;
+  }
+}
