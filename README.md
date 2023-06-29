@@ -4,7 +4,7 @@
 
 A dynamic HTML, CSS, and JavaScript project using REST API.
 
-🚧 This project is currently a work in progress 🚧
+🚧 This project is currently a work in progress and will be available shortly! Sorry for the inconvenience 🚧
 
 Features available at the moment:
 - User can view the top 25 shows and their information
