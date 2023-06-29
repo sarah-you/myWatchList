@@ -7,5 +7,9 @@ A dynamic HTML, CSS, and JavaScript project using REST API.
 🚧 This project is currently a work in progress 🚧
 
 Features available at the moment:
-- viewing the top 25 shows and their information
-- adding each show to to mySavedList to watch later 
+- User can view the top 25 shows and their information
+- the top 25 shows continues to update as the API data updates
+- User can add a show to myList to save each shows
+
+Features currently WIP:
+- User can remove a show from myList to remove each shows
