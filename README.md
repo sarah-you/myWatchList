@@ -16,10 +16,10 @@ I am an avid binge-watcher of all kinds of shows. However, I understand the stru
 
 ### App Overview
 
-#### web view
+#### web view -- pop out modal to view more info
 ![myWatchList overview web](/images/myWatchList-web.gif)
 
-#### mobile view
+#### mobile view -- responsive design
 ![myWatchList overview mobile](/images/myWatchList-mobile.gif)
 
 
@@ -28,8 +28,9 @@ I am an avid binge-watcher of all kinds of shows. However, I understand the stru
 Features available at the moment:
 - User can view the top 25 shows
 - User can click on each listing and see more detailed information about each show
-- the top 25 shows continues to update as the REST APIs data updates
+- User can navigate to external page to watch the show
 - User can add a show to myList
+- the top 25 shows continues to update as the REST APIs data updates
 
 Features currently WIP:
 - User can remove a show from myList
