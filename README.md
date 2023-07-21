@@ -16,6 +16,10 @@ I am an avid binge-watcher of all kinds of shows. However, I understand the stru
 
 ### App Overview
 
+#### myWatchList Wireframe (Figma)
+![myWatchList Figma](https://github.com/sarah-you/myWatchList/assets/103456134/267f4b45-ae8d-4c51-88da-0d25c1d72375)
+
+
 #### web view
 ![myWatchList overview web](/images/myWatchList-web.gif)
 
